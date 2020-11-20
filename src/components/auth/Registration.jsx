@@ -15,8 +15,10 @@ const Registration = () => {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
-                'Accepts': 'application/json'
+                'Accepts': 'application/json',
+                'Access-Control-Allow-Credentials': true
             },
+            // credentials: 'include',
             body: JSON.stringify({
                 user: {
                     first_name: firstName,
@@ -29,7 +31,9 @@ const Registration = () => {
             )
         }).then(resp => resp.json())
         .then(user => console.log(user))
+        .catch(error => console.log("errors: " + error))
     }
+
 
     return (
         <div>
@@ -41,6 +45,10 @@ const Registration = () => {
                 <input type="password" name="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
                 <button type="submit">Register</button>
             </form>
+
+            <h1>
+                {firstName}
+            </h1>
         </div>
     );
 }
