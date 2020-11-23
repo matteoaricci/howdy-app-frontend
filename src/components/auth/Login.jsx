@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-const Registration = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,20 +8,17 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/registrations", {
+    fetch("http://localhost:3000/sessions", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        Accepts: "application/json",
+        "Accepts": "application/json",
         "Access-Control-Allow-Credentials": true,
       },
       credentials: "include",
       body: JSON.stringify({
         user: {
-          first_name: firstName,
-          last_name: lastName,
           username: username,
-          email: email,
           password: password,
         },
       }),
@@ -38,31 +33,10 @@ const Registration = () => {
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
-          name="first-name"
-          placeholder="First Name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <input
-          type="text"
-          name="last-name"
-          placeholder="Last Name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <input
-          type="text"
           name="username"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
@@ -77,4 +51,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default Login;
